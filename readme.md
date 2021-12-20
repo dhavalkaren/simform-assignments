@@ -1,1 +1,1 @@
-hello this is simform
+All simform training tasks are submitted here.
