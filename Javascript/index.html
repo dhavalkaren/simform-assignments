@@ -1,0 +1,144 @@
+<html>
+<head>
+    <title>Calculator</title>
+	<script>	
+		var arr=[]	
+		function dis(val)
+		{
+			document.getElementById("result").value+=val
+		}
+		function dismp(val)
+		{
+			console.log("called mp")
+			if(document.getElementById("result").value>0){
+				arr.push(eval(document.getElementById("result").value))
+				document.getElementById("result").value = ""
+			}
+			
+		}
+		function dismm(val)
+		{
+			if(document.getElementById("result").value<0){
+				arr.push(eval(document.getElementById("result").value))
+				document.getElementById("result").value = ""
+			}
+		}
+		function dismrc(val)
+		{
+			let sum=0
+			for (let i = 0; i < arr.length; i++) {
+				sum += arr[i];
+			}
+			document.getElementById("result").value=sum
+		}
+		function disx(){
+			
+			let y = eval(document.getElementById("result").value)
+			document.getElementById("result").value =eval(1/y)
+		}
+		function disxx(){
+			
+			let y = eval(document.getElementById("result").value)
+			document.getElementById("result").value =eval(y**2)
+		}
+		function dismx(){
+			if(document.getElementById("result").value < 0){
+				let temp = eval(document.getElementById("result").value)
+				let y = temp*(-2)
+				document.getElementById("result").value =eval(temp+y)
+			}
+			
+		}		
+		function solve()
+		{			
+			let y = eval(document.getElementById("result").value)
+			document.getElementById("result").value = y
+		}
+		
+		function clr()
+		{
+			document.getElementById("result").value = ""
+			arr.splice(0,arr.length);
+		}
+	</script>
+	
+	<style>
+		.title{
+		margin-bottom: 10px;
+		text-align:center;
+        font-size: 27px;
+		width: 290px;
+        height: 60px;
+		color:rgb(16, 43, 16);
+		border: solid black 2px;
+		}
+
+		input[type="button"]
+		{
+		background-color:rgb(238, 238, 238);
+		color: black;
+		border: solid black 2px;
+		width:70px;
+        height:50px;
+		}
+
+		input[type="text"]
+		{
+		background-color:white;
+		border: solid black 2px;
+		width:100%
+		}
+	</style>
+</head>
+<br><br>
+	<div class = title style="margin-left: 40%;padding-top: 2%;box-shadow: 2px 2px 2px 2px rgb(104, 102, 102);">Calculator</div>
+	<table style="margin-left: 40%;box-shadow: 2px 2px 2px 2px rgb(104, 102, 102);">
+		<tr>
+			<td colspan="4"><input type="text" id="result" style="height: 50px;"/></td>
+			
+		</tr>
+		<tr>
+			
+			<td><input type="button" value="1" onclick="dis('1')"/> </td>
+			<td><input type="button" value="2" onclick="dis('2')"/> </td>
+			<td><input type="button" value="3" onclick="dis('3')"/> </td>
+			<td><input type="button" value="CLR" onclick="clr()"/> </td>	
+			
+		</tr>
+		<tr>
+			<td><input type="button" value="4" onclick="dis('4')"/> </td>
+			<td><input type="button" value="5" onclick="dis('5')"/> </td>
+			<td><input type="button" value="6" onclick="dis('6')"/> </td>
+			<td><input type="button" value="-" onclick="dis('-')"/> </td>
+		</tr>
+		<tr>
+			<td><input type="button" value="7" onclick="dis('7')"/> </td>
+			<td><input type="button" value="8" onclick="dis('8')"/> </td>
+			<td><input type="button" value="9" onclick="dis('9')"/> </td>
+			<td><input type="button" value="+" onclick="dis('+')"/> </td>
+		</tr>
+		<tr>
+           
+			
+			<td><input type="button" value="|x|" onclick="dismx()"/> </td>		
+			<td><input type="button" value="0" onclick="dis('0')"/> </td>			
+			<td><input type="button" value="." onclick="dis('.')"/> </td>
+			<td><input type="button" value="*" onclick="dis('*')"/> </td>
+		</tr>
+		<tr>
+			<td><input type="button" value="x^2" onclick="disxx()"/> </td>
+            <td><input type="button" value="M+" onclick="dismp()"/> </td>
+			<td><input type="button" value="M-" onclick="dismm()"/> </td>
+			<td><input type="button" value="MRC" onclick="dismrc()"/> </td>
+			
+		</tr>
+		<tr>
+            <td><input type="button" value="1/x" onclick="disx()"/> </td>
+			<td><input type="button" value="/" onclick="dis('/')"/> </td>
+			<td colspan="4"><input type="button" value="=" onclick="solve()" style="width:100%;COLOR:WHITE;background-color: #5590dd;"/> </td>		
+			
+		</tr>
+		
+	</table>
+</body>
+</html>
