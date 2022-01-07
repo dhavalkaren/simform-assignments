@@ -12,8 +12,9 @@ def string_to_int(string, numbers):
     number = 0
     for character in string:
         temp += character
-        if temp in numbers.keys():
-            number = (number * 10) + numbers[temp]
+        x=numbers.get(temp)
+        if x!=None:
+            number = (number * 10) + x
             temp = ""
     return number
 
@@ -29,9 +30,10 @@ def int_to_string(number, numbers):
         [str]: [number in words]
     """
     ans = ""
+    new_dict=dict([(value, key) for key, value in numbers.items()])
     while number >= 1:
         temp = number % 10
-        ans = str(get_key(numbers, temp)) + ans
+        ans = new_dict.get(temp) + ans
         number //= 10
     return ans
 
@@ -54,24 +56,16 @@ def gcd_of_two_number(number1, number2):
         return gcd_of_two_number(number2, number1%number2)
     return gcd_of_two_number(number1, number2%number1)
 
-
-def get_key(numbers, val):
-    """It will return the key value of given number from
-    numbers dictionary.
+def calculate_string_gcd(input1,input2):
+    """It will call all function to compute a gcd from string input and return string as output.
 
     Args:
-        numbers ([dict])
-        val ([int])
+        input1 ([int])
+        input2 ([int])
 
     Returns:
-        [str]: [key value of given number]
+        [str]: [number in words]
     """
-    for key, value in numbers.items():
-        if val == value:
-            return key
-
-
-def main():
     numbers = {
         "one": 1,
         "two": 2,
@@ -85,17 +79,18 @@ def main():
         "zero": 0,
     }
 
-    input1 = input("Input 1: ")
-    input2 = input("Input 2: ")
-
     number1 = string_to_int(input1, numbers)
     number2 = string_to_int(input2, numbers)
 
     gcd = gcd_of_two_number(number1, number2)
     ans = int_to_string(gcd, numbers)
+    return ans
     
-    print("Output: {}".format(ans))
 
 
 if __name__ == "__main__":
-    main()
+    input1 = input("Input 1: ")
+    input2 = input("Input 2: ")
+    
+    ans=calculate_string_gcd(input1,input2)
+    print("Output: {}".format(ans))
